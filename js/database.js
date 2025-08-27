@@ -106,7 +106,7 @@ class MemoryDatabase {
         }
 
         const table = this.tables[tableName];
-        let data = [...table.data];
+        let data = [...table.data].filter(record => !record.deleted);
 
         // Recherche
         if (options.search) {
