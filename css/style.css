@@ -1,0 +1,788 @@
+/* Variables CSS pour un thème cohérent */
+:root {
+    --primary-color: #8B4513;
+    --secondary-color: #D2691E;
+    --accent-color: #FFE4B5;
+    --success-color: #32CD32;
+    --warning-color: #FFA500;
+    --error-color: #FF4500;
+    --text-color: #2F1B14;
+    --light-bg: #FFF8DC;
+    --card-bg: #FFFFFF;
+    --shadow: 0 4px 15px rgba(139, 69, 19, 0.15);
+    --border-radius: 15px;
+}
+
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(135deg, var(--light-bg) 0%, var(--accent-color) 100%);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Animation des confettis */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--secondary-color);
+    animation: confetti-fall 3s infinite linear;
+}
+
+.confetti:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    background: var(--primary-color);
+}
+
+.confetti:nth-child(2) {
+    left: 30%;
+    animation-delay: 1s;
+    background: var(--success-color);
+}
+
+.confetti:nth-child(3) {
+    left: 50%;
+    animation-delay: 2s;
+    background: var(--warning-color);
+}
+
+.confetti:nth-child(4) {
+    left: 70%;
+    animation-delay: 0.5s;
+    background: var(--secondary-color);
+}
+
+.confetti:nth-child(5) {
+    left: 90%;
+    animation-delay: 1.5s;
+    background: var(--primary-color);
+}
+
+@keyframes confetti-fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* Container principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* En-tête */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: slideInDown 1s ease-out;
+}
+
+.kofi-avatar {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.kofi-photo-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.kofi-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    animation: kofiFloat 3s ease-in-out infinite;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 8px 16px rgba(139, 69, 19, 0.3));
+    border: 4px solid transparent;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    background-clip: padding-box;
+    cursor: pointer;
+}
+
+.kofi-photo:hover {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 12px 25px rgba(139, 69, 19, 0.4)) brightness(1.1);
+}
+
+.kofi-photo-border {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--success-color), var(--warning-color));
+    animation: rotateBorder 4s linear infinite;
+    z-index: -1;
+}
+
+.kofi-status-indicator {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: var(--success-color);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    animation: pulse 2s infinite;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.kofi-speech-bubble {
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card-bg);
+    padding: 12px 18px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border: 3px solid var(--secondary-color);
+    min-width: 250px;
+    max-width: 350px;
+    text-align: center;
+    animation: speechBubble 4s ease-in-out infinite;
+    opacity: 0;
+    z-index: 100;
+}
+
+.kofi-speech-bubble::after {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid var(--secondary-color);
+}
+
+.kofi-speech-bubble::before {
+    content: '';
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid var(--card-bg);
+    z-index: 1;
+}
+
+.kofi-speech-bubble p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    line-height: 1.4;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.coffee-icon {
+    font-size: 4rem;
+    color: var(--primary-color);
+    animation: bounce 2s infinite;
+    filter: drop-shadow(0 4px 8px rgba(139, 69, 19, 0.3));
+}
+
+.steam {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.steam-particle {
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    position: absolute;
+    animation: steam-rise 2s infinite;
+}
+
+.steam-particle:nth-child(1) {
+    left: -5px;
+    animation-delay: 0s;
+}
+
+.steam-particle:nth-child(2) {
+    left: 0px;
+    animation-delay: 0.3s;
+}
+
+.steam-particle:nth-child(3) {
+    left: 5px;
+    animation-delay: 0.6s;
+}
+
+@keyframes steam-rise {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-30px) scale(0.3);
+        opacity: 0;
+    }
+}
+
+.title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 3rem;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+    margin-bottom: 10px;
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+    }
+    100% {
+        text-shadow: 2px 2px 8px rgba(139, 69, 19, 0.4), 0 0 20px rgba(210, 105, 30, 0.3);
+    }
+}
+
+/* Contenu principal */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    animation: slideInUp 1s ease-out;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Formulaire */
+.appointment-form-container {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.appointment-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--success-color));
+    z-index: -1;
+    margin: -3px;
+    border-radius: var(--border-radius);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-header h2 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.form-subtitle {
+    color: var(--secondary-color);
+    font-style: italic;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.form-group label i {
+    margin-right: 8px;
+    color: var(--secondary-color);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--accent-color);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: var(--light-bg);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 10px rgba(210, 105, 30, 0.3);
+    transform: scale(1.02);
+}
+
+.character-count {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    text-align: right;
+    margin-top: 5px;
+}
+
+/* Bouton de soumission */
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.btn-animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.submit-btn:active .btn-animation {
+    width: 300px;
+    height: 300px;
+}
+
+/* Liste des rendez-vous */
+.appointments-list-container {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.list-header h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.refresh-btn {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.refresh-btn:hover {
+    background: var(--primary-color);
+    transform: rotate(180deg);
+}
+
+.appointments-list {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.appointment-card {
+    background: var(--light-bg);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--secondary-color);
+    transition: all 0.3s ease;
+    animation: slideInRight 0.5s ease-out;
+}
+
+.appointment-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
+}
+
+.appointment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.appointment-name {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.appointment-status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-pending {
+    background: var(--warning-color);
+    color: white;
+}
+
+.status-confirmed {
+    background: var(--success-color);
+    color: white;
+}
+
+.status-completed {
+    background: var(--primary-color);
+    color: white;
+}
+
+.status-cancelled {
+    background: var(--error-color);
+    color: white;
+}
+
+.appointment-details {
+    color: var(--text-color);
+    line-height: 1.4;
+}
+
+.appointment-details i {
+    margin-right: 8px;
+    color: var(--secondary-color);
+    width: 16px;
+}
+
+.kofi-response {
+    background: var(--accent-color);
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-style: italic;
+    border-left: 3px solid var(--primary-color);
+}
+
+/* Messages de notification */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transform: translateX(400px);
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--success-color);
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.hidden {
+    transform: translateX(400px);
+}
+
+.notification.error {
+    border-left-color: var(--error-color);
+}
+
+.notification.warning {
+    border-left-color: var(--warning-color);
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification-icon {
+    font-size: 1.2rem;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-color);
+    margin-left: 10px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 30px;
+    color: var(--secondary-color);
+    animation: slideInUp 1s ease-out 0.5s both;
+}
+
+.footer i {
+    margin: 0 5px;
+    animation: heartbeat 2s infinite;
+}
+
+.fun-fact {
+    margin-top: 15px;
+    font-style: italic;
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+/* Loading */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--secondary-color);
+}
+
+.loading i {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes heartbeat {
+    0%, 50%, 100% {
+        transform: scale(1);
+    }
+    25%, 75% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes kofiFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+}
+
+@keyframes rotateBorder {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+@keyframes speechBubble {
+    0%, 100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px) scale(0.9);
+    }
+    15%, 85% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0px) scale(1);
+    }
+}
+
+@keyframes joyParticle {
+    0% {
+        opacity: 1;
+        transform: scale(0.5) translateY(0px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1) translateY(-30px);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-60px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+    }
+    
+    .coffee-icon {
+        font-size: 3rem;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    .appointment-form-container,
+    .appointments-list-container {
+        padding: 20px;
+    }
+    
+    .notification {
+        right: 10px;
+        left: 10px;
+        transform: translateY(-100px);
+    }
+    
+    .notification.show {
+        transform: translateY(0);
+    }
+    
+    .kofi-speech-bubble {
+        min-width: 200px;
+        max-width: 280px;
+        font-size: 0.9rem;
+        padding: 10px 14px;
+        left: 50%;
+        right: auto;
+    }
+    
+    .kofi-photo {
+        width: 100px;
+        height: 100px;
+    }
+}

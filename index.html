@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>☕ Café avec Kofi ! ☕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Fallback CSS critique inline -->
+    <style>
+        /* CSS critique inline pour garantir l'affichage de base */
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #FFE4B5;
+            --success-color: #32CD32;
+            --warning-color: #FFA500;
+            --error-color: #FF4500;
+            --text-color: #2F1B14;
+            --light-bg: #FFF8DC;
+            --card-bg: #FFFFFF;
+            --shadow: 0 4px 15px rgba(139, 69, 19, 0.15);
+            --border-radius: 15px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, var(--light-bg) 0%, var(--accent-color) 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .kofi-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--secondary-color);
+        }
+        
+        .appointment-form-container,
+        .appointments-list-container {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Confettis animés -->
+    <div class="confetti-container">
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+    </div>
+
+    <div class="container">
+        <!-- En-tête rigolo -->
+        <header class="header">
+            <div class="kofi-avatar">
+                <div class="kofi-photo-container">
+                    <img src="images/kofi-photo.jpg" alt="Kofi - Maître du Café" class="kofi-photo">
+                    <div class="kofi-photo-border"></div>
+                    <div class="kofi-status-indicator">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                </div>
+                <div class="steam">
+                    <div class="steam-particle"></div>
+                    <div class="steam-particle"></div>
+                    <div class="steam-particle"></div>
+                </div>
+                <div class="kofi-speech-bubble">
+                    <p id="kofiSpeech">Salut ! Prêt pour un café et des fraises ? 🍓☕</p>
+                </div>
+            </div>
+            <h1 class="title">☕ Café avec Kofi ☕</h1>
+            <p class="subtitle">Parce que la vie est trop courte pour boire du mauvais café ! 😄</p>
+        </header>
+
+        <!-- Zone principale -->
+        <main class="main-content">
+            <!-- Formulaire de rendez-vous -->
+            <div class="appointment-form-container">
+                <div class="form-header">
+                    <h2><i class="fas fa-calendar-alt"></i> Réserver votre moment café magique !</h2>
+                    <p class="form-subtitle">Préparez-vous à vivre le meilleur rendez-vous café de votre vie ! ☕✨</p>
+                </div>
+
+                <form id="appointmentForm" class="appointment-form">
+                    <div class="form-group">
+                        <label for="name">
+                            <i class="fas fa-user"></i> Votre petit nom :
+                        </label>
+                        <input type="text" id="name" name="name" required 
+                               placeholder="Ex: Captain Café, Maître du Latte..." maxlength="50">
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="date">
+                            <i class="fas fa-calendar"></i> Date du rendez-vous magique :
+                        </label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">
+                            <i class="fas fa-clock"></i> Heure parfaite :
+                        </label>
+                        <select id="time" name="time" required>
+                            <option value="">Choisissez votre moment ☕</option>
+                            <option value="08:00">08h00 - Réveil en douceur ☀️</option>
+                            <option value="10:00">10h00 - Pause matinale 🌅</option>
+                            <option value="14:00">14h00 - Break après-midi 🌞</option>
+                            <option value="16:00">16h00 - L'heure du goûter ☕</option>
+                            <option value="18:00">18h00 - Décompression du soir 🌆</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">
+                            <i class="fas fa-map-marker-alt"></i> Lieu de rencontre :
+                        </label>
+                        <select id="location" name="location" required>
+                            <option value="">Où se retrouver ? 📍</option>
+                            <option value="central-perk">Central Perk (comme dans Friends) ☕</option>
+                            <option value="starbucks">Starbucks du coin 🌟</option>
+                            <option value="cafe-kofi">Le Café Secret de Kofi 🤫</option>
+                            <option value="bureau">Au bureau (avec machine à café) 🏢</option>
+                            <option value="terrasse">Une jolie terrasse ☀️</option>
+                            <option value="autre">Autre lieu magique ✨</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="otherLocationGroup" style="display: none;">
+                        <label for="otherLocation">
+                            <i class="fas fa-star"></i> Précisez votre lieu magique :
+                        </label>
+                        <input type="text" id="otherLocation" name="otherLocation" 
+                               placeholder="Décrivez ce lieu fantastique...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="coffeeType">
+                            <i class="fas fa-coffee"></i> Votre boisson préférée :
+                        </label>
+                        <select id="coffeeType" name="coffeeType" required>
+                            <option value="">Que buvez-vous ? ☕</option>
+                            <option value="espresso">Espresso - Court et intense ⚡</option>
+                            <option value="americano">Americano - Classique et fort 🇺🇸</option>
+                            <option value="latte">Latte - Doux et crémeux 🥛</option>
+                            <option value="cappuccino">Cappuccino - Mousseux parfait ☁️</option>
+                            <option value="macchiato">Macchiato - Sophistiqué 🎨</option>
+                            <option value="mocha">Moka - Café + chocolat, le préféré de Kofi ! 🍫☕</option>
+                            <option value="chocolat">Chocolat chaud - Comme Kofi l'adore ! 🍫</option>
+                            <option value="fraise-latte">Latte aux fraises - Spécialité Kofi ! 🍓☕</option>
+                            <option value="chocolat-fraise">Chocolat-Fraises - Le combo de Kofi ! 🍫🍓</option>
+                            <option value="tea">Thé - Team théière 🍵</option>
+                            <option value="fraise-smoothie">Smoothie aux fraises 🍓</option>
+                            <option value="surprise">Surprise-moi ! 🎲</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mood">
+                            <i class="fas fa-smile"></i> Votre humeur du jour :
+                        </label>
+                        <select id="mood" name="mood" required>
+                            <option value="">Comment vous sentez-vous ? 😊</option>
+                            <option value="energique">Énergique - Prêt(e) à conquérir le monde ! 🚀</option>
+                            <option value="relax">Relax - Mode zen activé 😌</option>
+                            <option value="creatif">Créatif - Plein d'idées géniales 💡</option>
+                            <option value="sociable">Sociable - Envie de papoter 💬</option>
+                            <option value="contemplatif">Contemplatif - Mode philosophe ☁️</option>
+                            <option value="rigolo">Rigolo - Prêt(e) à rire ! 😄</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">
+                            <i class="fas fa-comment"></i> Message secret pour Kofi :
+                        </label>
+                        <textarea id="message" name="message" rows="3" 
+                                  placeholder="Dites quelque chose de drôle, d'inspirant, ou partagez une blague sur le café ! ☕😄" 
+                                  maxlength="200"></textarea>
+                        <small class="character-count">0/200 caractères</small>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-magic"></i>
+                        Réserver ce moment magique ! ✨
+                        <div class="btn-animation"></div>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Liste des rendez-vous -->
+            <div class="appointments-list-container">
+                <div class="list-header">
+                    <h3><i class="fas fa-list"></i> Rendez-vous programmés</h3>
+                    <button id="refreshBtn" class="refresh-btn" title="Actualiser">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+                <div id="appointmentsList" class="appointments-list">
+                    <div class="loading">
+                        <i class="fas fa-coffee fa-spin"></i>
+                        <p>Préparation du café en cours...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Messages de notification -->
+        <div id="notification" class="notification hidden">
+            <div class="notification-content">
+                <i class="notification-icon"></i>
+                <span class="notification-text"></span>
+                <button class="notification-close">×</button>
+            </div>
+        </div>
+
+        <!-- Footer rigolo -->
+        <footer class="footer">
+            <p>
+                <i class="fas fa-heart"></i> 
+                Fait avec amour et beaucoup de caféine par l'équipe Kofi 
+                <i class="fas fa-coffee"></i>
+            </p>
+            <p class="fun-fact" id="funFact">💡 Le saviez-vous ? Le café est la 2ème boisson la plus consommée au monde après l'eau !</p>
+        </footer>
+    </div>
+
+    <!-- Configuration -->
+    <script src="./config.js"></script>
+    
+    <!-- Base de données en mémoire -->
+    <script src="./js/database.js"></script>
+    
+    <!-- Application principale -->
+    <script src="./js/app.js"></script>
+    <script>
+        // Vérification du chargement des styles CSS
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const testElement = document.createElement('div');
+                testElement.className = 'kofi-photo';
+                document.body.appendChild(testElement);
+                
+                const computedStyle = window.getComputedStyle(testElement);
+                const borderRadius = computedStyle.getPropertyValue('border-radius');
+                
+                if (!borderRadius || borderRadius === '0px') {
+                    console.warn('⚠️ CSS non chargé, rechargement du CSS...');
+                    // Forcer le rechargement du CSS avec un cache buster
+                    const link = document.querySelector('link[href*="style.css"]');
+                    if (link) {
+                        const newLink = document.createElement('link');
+                        newLink.rel = 'stylesheet';
+                        newLink.href = './css/style.css?' + Date.now();
+                        document.head.appendChild(newLink);
+                    }
+                }
+                
+                document.body.removeChild(testElement);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
