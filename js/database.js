@@ -309,7 +309,8 @@ class MockAPI {
         
         // Parse: tables/{table}/{id?}
         if (urlParts[0] === 'tables') {
-            const tableName = urlParts[1];
+            // Remove query parameters from table name
+            const tableName = urlParts[1].split('?')[0];
             const recordId = urlParts[2];
             
             switch (method) {
